@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Syntax check
+        run: |
+          node --check lib/index.js
+          node --check lib/client.js
+      - name: Self tests
+        run: |
+          node test/selftest.mjs
+          node test/behav.mjs
+      - name: Package manifest
+        run: node -e "const p=require('./package.json'); if(!p.dsh?.bundle?.patch) { console.error('dsh.bundle.patch missing'); process.exit(1) } if(!require('fs').existsSync(p.dsh.bundle.patch)) { console.error('patch file missing'); process.exit(1) } console.log('manifest ok')"
