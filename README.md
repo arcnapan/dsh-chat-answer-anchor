@@ -68,9 +68,17 @@ dsh-chat-answer-anchor/
 │  ├─ selftest.mjs      静态自测：模拟 __ModuleLoader__ 校验导出与注册参数
 │  ├─ behav.mjs         行为自测：假 DOM 跑 91 条断言
 │  └─ bench.mjs         微基准：量热路径开销
+├─ docs/screenshots/    插件市场用的截图
+├─ screenshots.json     截图清单（DSH 插件市场读取）
 ├─ cordis.patch.yml     bundle 插入声明
 └─ package.json
 ```
+
+## 截图
+
+设置 → 通用 里的开关：
+
+![设置里的开关](docs/screenshots/settings-toggle.png)
 
 ## 开发与自测
 
